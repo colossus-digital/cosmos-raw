@@ -63,3 +63,46 @@ def prepare_and_broadcast_basic_transaction(
     tx.complete()
 
     return client.broadcast_tx(tx)
+
+def prepare_and_broadcast_basic_transaction_v2(
+    client: "LedgerClient",  # type: ignore # noqa: F821
+    tx: "Transaction",  # type: ignore # noqa: F821
+    indirizzo,  # type: ignore # noqa: F821
+    chiave_pubblica,
+    account: Optional["Account"] = None,  # type: ignore # noqa: F821
+    gas_limit: Optional[int] = None,
+    memo: Optional[str] = None,
+) -> SubmittedTx:
+    """Prepare and broadcast basic transaction.
+
+    :param client: Ledger client
+    :param tx: The transaction
+    :param sender: The transaction sender
+    :param account: The account
+    :param gas_limit: The gas limit
+    :param memo: Transaction memo, defaults to None
+
+    :return: broadcast transaction
+    """
+    # query the account information for the sender
+    if account is None:
+        account = client.query_account(indirizzo)
+
+    if gas_limit is not None:
+        # simply build the fee from the provided gas limit
+        fee = client.estimate_fee_from_gas(gas_limit)
+    else:
+        print('Missing Gas Limit')
+        return
+
+    # finally, build the final transaction that will be executed with the correct gas and fee values
+    tx.seal_v2(
+        SigningCfg.direct(chiave_pubblica, account.sequence),
+        fee=fee,
+        gas_limit=gas_limit,
+        memo=memo,
+    )
+
+    tx.sign_v2(client.network_config.chain_id, account.number)
+    tx.complete()
+    return tx

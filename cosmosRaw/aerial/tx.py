@@ -72,6 +72,16 @@ def _create_proto_public_key(public_key: PublicKey) -> ProtoAny:
     )
     return proto_public_key
 
+def _create_proto_public_key_v2(chiave_pubblica) -> ProtoAny:
+    proto_public_key = ProtoAny()
+    proto_public_key.Pack(
+        ProtoPubKey(
+            key=chiave_pubblica,
+        ),
+        type_url_prefix="/",
+    )
+    return proto_public_key
+
 
 class SigningMode(Enum):
     Direct = 1
@@ -99,6 +109,7 @@ class Transaction:
         self._tx_body: Optional[TxBody] = None
         self._tx = None
         self._fee = None
+        self.data_for_signing=None
 
     @property  # noqa
     def state(self) -> TxState:
@@ -169,6 +180,49 @@ class Transaction:
         self._tx = Tx(body=self._tx_body, auth_info=auth_info)
         return self
 
+    def seal_v2(
+        self,
+        signing_cfgs: Union[SigningCfg, List[SigningCfg]],
+        fee: str,
+        gas_limit: int,
+        memo: Optional[str] = None,
+    ) -> "Transaction":
+        self._state = TxState.Sealed
+
+        input_signing_cfgs: List[SigningCfg] = (
+            signing_cfgs if _is_iterable(signing_cfgs) else [signing_cfgs]  # type: ignore
+        )
+
+        signer_infos = []
+        for signing_cfg in input_signing_cfgs:
+            assert signing_cfg.mode == SigningMode.Direct
+
+            signer_infos.append(
+                SignerInfo(
+                    public_key=_create_proto_public_key_v2(signing_cfg.public_key),
+                    mode_info=ModeInfo(
+                        single=ModeInfo.Single(mode=SignMode.SIGN_MODE_DIRECT)
+                    ),
+                    sequence=signing_cfg.sequence_num,
+                )
+            )
+
+        auth_info = AuthInfo(
+            signer_infos=signer_infos,
+            fee=Fee(amount=parse_coins(fee), gas_limit=gas_limit),
+        )
+
+        self._fee = fee
+
+        self._tx_body = TxBody()
+        self._tx_body.memo = memo or ""
+        self._tx_body.messages.extend(
+            _wrap_in_proto_any(self._msgs)
+        )  # pylint: disable=E1101
+
+        self._tx = Tx(body=self._tx_body, auth_info=auth_info)
+        return self
+
     def sign(
         self,
         signer: Signer,
@@ -197,6 +251,42 @@ class Transaction:
         )
         self._tx.signatures.extend([signature])
         return self
+
+    def sign_v2(
+        self,
+        #signer: Signer,
+        chain_id: str,
+        account_number: int,
+        deterministic: bool = False,
+    ) -> "Transaction":
+        """Sign the transaction.
+
+        :param signer: Signer
+        :param chain_id: chain id
+        :param account_number: account number
+        :param deterministic: deterministic, defaults to False
+        :raises RuntimeError: If transaction is not sealed
+        :return: signed transaction
+        """
+        if self.state != TxState.Sealed:
+            raise RuntimeError(
+                "Transaction is not sealed. It must be sealed before signing is possible."
+            )
+        print('auth info')
+        print(self._tx.auth_info)
+        print('Transaction body:')
+        print(self._tx.body)
+
+        sd = SignDoc()
+        sd.body_bytes = self._tx.body.SerializeToString()
+        sd.auth_info_bytes = self._tx.auth_info.SerializeToString()
+        sd.chain_id = chain_id
+        sd.account_number = account_number
+
+        data_for_signing = sd.SerializeToString()
+        self.data_for_signing = data_for_signing
+        return self
+
 
     def complete(self) -> "Transaction":
         self._state = TxState.Final

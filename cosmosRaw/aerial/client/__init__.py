@@ -33,7 +33,7 @@ from cosmosRaw.aerial.client.staking import (
     create_redelegate_msg,
     create_undelegate_msg,
 )
-from cosmosRaw.aerial.client.utils import prepare_and_broadcast_basic_transaction
+from cosmosRaw.aerial.client.utils import prepare_and_broadcast_basic_transaction, prepare_and_broadcast_basic_transaction_v2
 from cosmosRaw.aerial.config import NetworkConfig
 from cosmosRaw.aerial.exceptions import NotFoundError, QueryTimeoutError
 from cosmosRaw.aerial.gas import GasStrategy, SimulationGasStrategy
@@ -255,6 +255,36 @@ class LedgerClient:
             self, tx, sender, gas_limit=gas_limit, memo=memo
         )
 
+    def send_tokens_v2(
+        self,
+        destination: Address,
+        amount: int,
+        denom: str,
+        indirizzo: str,
+        chiave_pubblica,
+        memo: Optional[str] = None,
+        gas_limit: Optional[int] = None,
+    ) -> SubmittedTx:
+        """Send tokens.
+
+        :param destination: destination address
+        :param amount: amount
+        :param denom: denom
+        :param sender: sender
+        :param memo: memo, defaults to None
+        :param gas_limit: gas limit, defaults to None
+        :return: prepare and broadcast the transaction and transaction details
+        """
+        # build up the store transaction
+        tx = Transaction()
+        '''tx.add_message(
+            create_bank_send_msg(sender.address(), destination, amount, denom)
+        )'''
+        tx.add_message(create_bank_send_msg(indirizzo, destination, amount, denom))
+        return prepare_and_broadcast_basic_transaction_v2(
+            self, tx, indirizzo, chiave_pubblica, gas_limit=gas_limit, memo=memo
+        )
+
     def query_validators(
         self, status: Optional[ValidatorStatus] = None
     ) -> List[Validator]:
@@ -355,6 +385,37 @@ class LedgerClient:
         return prepare_and_broadcast_basic_transaction(
             self, tx, sender, gas_limit=gas_limit, memo=memo
         )
+
+    def delegate_tokens_v2(
+        self,
+        validator: Address,
+        amount: int,
+        indirizzo: str,
+        chiave_pubblica,
+        memo: Optional[str] = None,
+        gas_limit: Optional[int] = None,
+    ) -> SubmittedTx:
+        """Delegate tokens.
+
+        :param validator: validator address
+        :param amount: amount
+        :param sender: sender
+        :param memo: memo, defaults to None
+        :param gas_limit: gas limit, defaults to None
+        :return: prepare and broadcast the transaction and transaction details
+        """
+        tx = Transaction()
+        tx.add_message(
+            create_delegate_msg(
+                indirizzo,
+                validator,
+                amount,
+                self.network_config.staking_denomination,
+            )
+        )
+
+        return prepare_and_broadcast_basic_transaction_v2(
+            self, tx, indirizzo, chiave_pubblica, gas_limit=gas_limit, memo=memo)
 
     def redelegate_tokens(
         self,

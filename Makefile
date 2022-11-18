@@ -10,8 +10,8 @@ IBCGO_URL := https://github.com/cosmos/ibc-go
 IBCGO_VERSION := v2.2.0
 IBCGO_DIR := build/ibcgo-proto-schema
 
-OUTPUT_FOLDER := cosmpy/protos
-PYCOSM_SRC_DIR := cosmpy
+OUTPUT_FOLDER := cosmosRaw/protos
+PYCOSM_SRC_DIR := cosmosRaw
 PYCOSM_DOCS_DIR := docs
 
 PYCOSM_TESTS_DIR := tests

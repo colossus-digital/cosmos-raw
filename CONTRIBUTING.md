@@ -2,9 +2,9 @@
 
 Contributions to this library are welcome.
 
-- If you want to report a bug or ask for features, you can check the [Issues page](https://github.com/fetchai/cosmpy/issues) and raise an issue.
+- If you want to report a bug or ask for features, you can check the [Issues page](https://github.com/fetchai/cosmosRaw/issues) and raise an issue.
 
-- If you would like to contribute a bug fix or feature then [submit a Pull request](https://github.com/fetchai/cosmpy/pulls).
+- If you would like to contribute a bug fix or feature then [submit a Pull request](https://github.com/fetchai/cosmosRaw/pulls).
 
 For other kinds of feedback, you can contact one of the
 [authors](AUTHORS.md) by email.
@@ -21,9 +21,9 @@ Before reading on, please have a look at the [code of conduct](CODE_OF_CONDUCT.m
 
 - Bug fixes also generally require unit tests, because the presence of bugs usually indicates insufficient test coverage.
 
-- Keep API compatibility in mind when you change code in `cosmpy`. Above version `1.0.0`, breaking changes can happen across versions with different left digit. Below version `1.0.0`, they can happen across versions with different middle digit. Reviewers of your pull request will comment on any API compatibility issues.
+- Keep API compatibility in mind when you change code in `cosmosRaw`. Above version `1.0.0`, breaking changes can happen across versions with different left digit. Below version `1.0.0`, they can happen across versions with different middle digit. Reviewers of your pull request will comment on any API compatibility issues.
   
-- When you contribute a new feature to `cosmpy`, the maintenance burden is transferred to the core team. This means that the benefit of the contribution must be compared against the cost of maintaining the feature.
+- When you contribute a new feature to `cosmosRaw`, the maintenance burden is transferred to the core team. This means that the benefit of the contribution must be compared against the cost of maintaining the feature.
 
 - Where possible, extend existing features instead of replacing one.
 
@@ -37,7 +37,7 @@ If you have improvements, send us your pull requests!
 
 A team member will be assigned to review your pull requests. All tests are run as part of CI as well as various other checks (linters, static type checkers, security checkers, etc). If there are any problems, feedback is provided via GitHub. Once the pull requests is approved and passes continuous integration checks, you or a team member can merge it.
 
-If you want to contribute, start working through the codebase, navigate to the Github [Issues page](https://github.com/fetchai/cosmpy/issues) tab and start looking through interesting issues. If you decide to start on an issue, leave a comment so that other people know that you're working on it. If you want to help out, but not alone, use the issue comment thread to coordinate.
+If you want to contribute, start working through the codebase, navigate to the Github [Issues page](https://github.com/fetchai/cosmosRaw/issues) tab and start looking through interesting issues. If you decide to start on an issue, leave a comment so that other people know that you're working on it. If you want to help out, but not alone, use the issue comment thread to coordinate.
 
 ## Commits and PRs
 

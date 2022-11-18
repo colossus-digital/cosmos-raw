@@ -5,10 +5,10 @@ First, perform all the necessary imports:
 
 ```python
 import base64
-from cosmpy.aerial.client import LedgerClient, NetworkConfig
-from cosmpy.aerial.contract import LedgerContract
-from cosmpy.aerial.faucet import FaucetApi
-from cosmpy.aerial.wallet import LocalWallet
+from cosmosRaw.aerial.client import LedgerClient, NetworkConfig
+from cosmosRaw.aerial.contract import LedgerContract
+from cosmosRaw.aerial.faucet import FaucetApi
+from cosmosRaw.aerial.wallet import LocalWallet
 ```
 Set the network configuration, define a local wallet and add some tokens to it using the FaucetApi
 
@@ -183,4 +183,4 @@ You can now query you LP token balance to observe that it has gone down to zero
 liq_token_contract.query({"balance": {"address": str(wallet.address())}})
 ```
 
-You can also check the full code example at [`liquidity-pool`](https://github.com/fetchai/cosmpy/blob/develop/examples/aerial_liquidity_pool.py)
+You can also check the full code example at [`liquidity-pool`](https://github.com/fetchai/cosmosRaw/blob/develop/examples/aerial_liquidity_pool.py)

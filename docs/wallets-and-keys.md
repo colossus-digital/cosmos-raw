@@ -1,10 +1,10 @@
-To make changes on a network, you will need to start sending transactions to it. This in tern involves managing private keys and addresses. Luckily, CosmPy makes this relatively straightforward.
+To make changes on a network, you will need to start sending transactions to it. This in tern involves managing private keys and addresses. Luckily, cosmosRaw makes this relatively straightforward.
 
 The following code outlines how to both generate a completely new private key and how to recover a previously generated one:
 
 ```python
-from cosmpy.aerial.wallet import LocalWallet
-from cosmpy.crypto.keypairs import PrivateKey
+from cosmosRaw.aerial.wallet import LocalWallet
+from cosmosRaw.crypto.keypairs import PrivateKey
 
 # To create a random private key:
 private_key = PrivateKey()
@@ -13,7 +13,7 @@ private_key = PrivateKey()
 private_key = PrivateKey('<base64 encoded private key>')
 ```
 
-The `PrivateKey` object is one of CosmPy's low level primitives. This is why it is generally paired with a `Wallet` object in most scenarios. Below, a `LocalWallet` (a kind of `Wallet`) is created using the private key:
+The `PrivateKey` object is one of cosmosRaw's low level primitives. This is why it is generally paired with a `Wallet` object in most scenarios. Below, a `LocalWallet` (a kind of `Wallet`) is created using the private key:
 
 ```python
 wallet = LocalWallet(private_key)
@@ -27,7 +27,7 @@ print(wallet.address()) # will print the address for the wallet
 
 ## Existing account
 
-To use cosmpy with an existing account, extract the private key and convert it into a base64 encoded string.
+To use cosmosRaw with an existing account, extract the private key and convert it into a base64 encoded string.
 
 For example, to do this on MacOS or Linux for the Fetch.ai network using its [FetchD](https://docs.fetch.ai/ledger_v2/) CLI:
 

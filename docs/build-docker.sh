@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-TAG_NAME=cosmpy-docs-build:latest
+TAG_NAME=cosmosRaw-docs-build:latest
 
 # ensure the output folder is created
 mkdir -p ../site

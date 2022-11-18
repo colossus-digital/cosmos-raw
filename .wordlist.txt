@@ -25,11 +25,11 @@ WasmD
 linter
 localhost
 blockchain
-CosmPy
-Cosmpy
+cosmosRaw
+cosmosRaw
 blockchains
 Cosmwasm
-cosmpy
+cosmosRaw
 testnet
 protos
 MsgWithdrawValidatorCommission
@@ -210,7 +210,7 @@ usd
 wget
 Bip
 CLI
-CosmPy's
+cosmosRaw's
 DeriveDefaultPath
 FromSeed
 MacOS

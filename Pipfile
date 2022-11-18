@@ -4,10 +4,10 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-cosmpy = { editable = true, extras = ["dev", "test"], path = "." }
+cosmosRaw = { editable = true, extras = ["dev", "test"], path = "." }
 
 [packages]
-cosmpy = { editable = true, extras = [], path = "." }
+cosmosRaw = { editable = true, extras = [], path = "." }
 
 [pipenv]
 allow_prereleases = true

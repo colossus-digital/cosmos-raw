@@ -24,9 +24,9 @@ import unittest
 import pytest
 from google.protobuf.json_format import ParseDict
 
-from cosmpy.auth.rest_client import AuthRestClient
-from cosmpy.common.utils import json_encode
-from cosmpy.protos.cosmos.auth.v1beta1.query_pb2 import (
+from cosmosRaw.auth.rest_client import AuthRestClient
+from cosmosRaw.common.utils import json_encode
+from cosmosRaw.protos.cosmos.auth.v1beta1.query_pb2 import (
     QueryAccountRequest,
     QueryAccountResponse,
     QueryParamsRequest,

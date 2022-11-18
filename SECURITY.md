@@ -1,10 +1,10 @@
 # Security Policy
 
-Security is very important for Fetch.ai and its community. This document outlines security procedures and general policies for the `cosmpy` project.
+Security is very important for Fetch.ai and its community. This document outlines security procedures and general policies for the `cosmosRaw` project.
 
 ## Supported Versions
 
-The following table shows which versions of `cosmpy` are currently being supported with security updates.
+The following table shows which versions of `cosmosRaw` are currently being supported with security updates.
 
 | Version   | Supported          |
 | --------- | ------------------ |
@@ -12,7 +12,7 @@ The following table shows which versions of `cosmpy` are currently being support
 
 ## Reporting a Vulnerability
 
-The `cosmpy` team and community take all security bugs in `cosmpy` seriously. We appreciate your efforts and responsible disclosure and will make every effort to acknowledge your contributions.
+The `cosmosRaw` team and community take all security bugs in `cosmosRaw` seriously. We appreciate your efforts and responsible disclosure and will make every effort to acknowledge your contributions.
 
 Report security bugs by emailing `developer@fetch.ai`.
 

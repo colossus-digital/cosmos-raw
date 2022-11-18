@@ -1,21 +1,21 @@
-The Cosmpy library provides a high-level API which greatly simplifies the
+The cosmosRaw library provides a high-level API which greatly simplifies the
 most common use cases when interacting with Cosmos-based chains (e.g. [sending
 tokens](send-tokens.md), [staking](staking.md), [deploying and interacting with contracts](deploy-a-contract.md)). There are [documentation](connect-to-network.md) and
-[example code](https://github.com/fetchai/cosmpy/tree/master/examples) covering such use cases.
+[example code](https://github.com/fetchai/cosmosRaw/tree/master/examples) covering such use cases.
 
-However, cosmpy also provides low-level access to the entire Cosmos-SDK, enabling the
+However, cosmosRaw also provides low-level access to the entire Cosmos-SDK, enabling the
 full gamut of functionality to be accessed, albeit with a little more boiler-plate.
 
-Here, we aim to help developers navigate the low-level, protobuf-based API functionality, provided by Cosmpy.
+Here, we aim to help developers navigate the low-level, protobuf-based API functionality, provided by cosmosRaw.
 
 ## Recap: High Level API - Aerial
 
-As a reminder, here is a quick example of using the high level functionality provided by Cosmpy. In this case, we connect to a testnet, create a wallet, stake some tokens with a validator, then claim our rewards:
+As a reminder, here is a quick example of using the high level functionality provided by cosmosRaw. In this case, we connect to a testnet, create a wallet, stake some tokens with a validator, then claim our rewards:
 
 ```python
-from cosmpy.aerial.client import LedgerClient, NetworkConfig
-from cosmpy.aerial.wallet import LocalWallet
-from cosmpy.crypto.keypairs import PrivateKey
+from cosmosRaw.aerial.client import LedgerClient, NetworkConfig
+from cosmosRaw.aerial.wallet import LocalWallet
+from cosmosRaw.crypto.keypairs import PrivateKey
 
 client = LedgerClient(NetworkConfig.fetchai_dorado_testnet())
 wallet = LocalWallet(PrivateKey("rBDA3Q0vK5T+JVQmXSoooqUY/mSO4mmhMHQJI31+h1o="))
@@ -25,8 +25,8 @@ tx = client.claim_rewards("fetchvaloper1rsane988vksrgp2mlqzclmt8wucxv0ej4hrn2k",
 tx.wait_to_complete()
 ```
 
-The available high-level helper functions provided by cosmpy can be found by browsing for instance
-[the aerial client package](https://github.com/fetchai/cosmpy/blob/master/cosmpy/aerial/client/__init__.py).
+The available high-level helper functions provided by cosmosRaw can be found by browsing for instance
+[the aerial client package](https://github.com/fetchai/cosmosRaw/blob/master/cosmosRaw/aerial/client/__init__.py).
 
 ## Low Level API
 
@@ -36,18 +36,18 @@ Not all Cosmos-SDK functionality is encapsulated in the high level aerial packag
 
 Analogous to the rewards claim example above, what if a validator operator wanted to claim their commission? At the time of writing, there is no high-level API to achieve this, so the low level API must be used.
 
-In the [protos](https://github.com/fetchai/cosmpy/tree/master/cosmpy/protos) directory, there is a [MsgWithdrawValidatorCommission](https://github.com/fetchai/cosmpy/blob/6d7b5f49722b67c803145d55aa291fe426c19994/cosmpy/protos/cosmos/distribution/v1beta1/tx_pb2.py#L160)
+In the [protos](https://github.com/fetchai/cosmosRaw/tree/master/cosmosRaw/protos) directory, there is a [MsgWithdrawValidatorCommission](https://github.com/fetchai/cosmosRaw/blob/6d7b5f49722b67c803145d55aa291fe426c19994/cosmosRaw/protos/cosmos/distribution/v1beta1/tx_pb2.py#L160)
 message, which is what we need. It takes a single `validator_address` parameter which is a `utf-8` string.
 
 To send a transaction containing such a message:
 
 ```python
-from cosmpy.aerial.client import LedgerClient, NetworkConfig
-from cosmpy.aerial.wallet import LocalWallet
-from cosmpy.aerial.tx import Transaction
-from cosmpy.aerial.client.utils import prepare_and_broadcast_basic_transaction
-from cosmpy.protos.cosmos.distribution.v1beta1.tx_pb2 import MsgWithdrawValidatorCommission
-from cosmpy.crypto.keypairs import PrivateKey
+from cosmosRaw.aerial.client import LedgerClient, NetworkConfig
+from cosmosRaw.aerial.wallet import LocalWallet
+from cosmosRaw.aerial.tx import Transaction
+from cosmosRaw.aerial.client.utils import prepare_and_broadcast_basic_transaction
+from cosmosRaw.protos.cosmos.distribution.v1beta1.tx_pb2 import MsgWithdrawValidatorCommission
+from cosmosRaw.crypto.keypairs import PrivateKey
 
 client = LedgerClient(NetworkConfig.fetchai_dorado_testnet())
 wallet = LocalWallet(PrivateKey("<redacted>private key of dorado validator0"))
@@ -67,8 +67,8 @@ tx.wait_to_complete()
 The above example creates and broadcasts a simple `MsgWithdrawValidatorCommission` message. However, sometimes it is necessary to include one message in another. For example, what if we wanted to use the above message but execute it from a different account using `authz` (i.e. use an account which holds minimal funds, whose keys need not be treated with the same level of care as those of the validator itself)?
 
 In this case, we'll need to send an `authz`
-[MsgExec](https://github.com/fetchai/cosmpy/blob/4abb976753edcab402fcc23d4dce3ab67b73b608/cosmpy/protos/cosmos/authz/v1beta1/tx_pb2.py#L114)
-message, which can be found in [tx_pb2.py](https://github.com/fetchai/cosmpy/blob/4abb976753edcab402fcc23d4dce3ab67b73b608/cosmpy/protos/cosmos/authz/v1beta1/tx_pb2.py) under `cosmos/authz` area of `cosmpy/protos`.
+[MsgExec](https://github.com/fetchai/cosmosRaw/blob/4abb976753edcab402fcc23d4dce3ab67b73b608/cosmosRaw/protos/cosmos/authz/v1beta1/tx_pb2.py#L114)
+message, which can be found in [tx_pb2.py](https://github.com/fetchai/cosmosRaw/blob/4abb976753edcab402fcc23d4dce3ab67b73b608/cosmosRaw/protos/cosmos/authz/v1beta1/tx_pb2.py) under `cosmos/authz` area of `cosmosRaw/protos`.
 This message takes two parameters. The `grantee` is a simple string address similar to the above. But the `msgs` field needs to support multiple types of messages and not just `MsgWithdrawValidatorCommission`.
 
 Protobuf is strongly typed, so to facilitate this flexibility, it is necessary to first pack the nested message into a `protobuf.Any` message.
@@ -76,13 +76,13 @@ Protobuf is strongly typed, so to facilitate this flexibility, it is necessary t
 Therefore, we arrive at the code looking like:
 
 ```python
-from cosmpy.aerial.client import LedgerClient, NetworkConfig
-from cosmpy.aerial.wallet import LocalWallet
-from cosmpy.aerial.tx import Transaction
-from cosmpy.aerial.client.utils import prepare_and_broadcast_basic_transaction
-from cosmpy.crypto.keypairs import PrivateKey
-from cosmpy.protos.cosmos.distribution.v1beta1.tx_pb2 import MsgWithdrawValidatorCommission
-from cosmpy.protos.cosmos.authz.v1beta1.tx_pb2 import MsgExec
+from cosmosRaw.aerial.client import LedgerClient, NetworkConfig
+from cosmosRaw.aerial.wallet import LocalWallet
+from cosmosRaw.aerial.tx import Transaction
+from cosmosRaw.aerial.client.utils import prepare_and_broadcast_basic_transaction
+from cosmosRaw.crypto.keypairs import PrivateKey
+from cosmosRaw.protos.cosmos.distribution.v1beta1.tx_pb2 import MsgWithdrawValidatorCommission
+from cosmosRaw.protos.cosmos.authz.v1beta1.tx_pb2 import MsgExec
 from google.protobuf import any_pb2
 
 client = LedgerClient(NetworkConfig.fetchai_dorado_testnet())
@@ -116,14 +116,14 @@ By default, the above provides one year's worth of authorization to withdraw val
 For those with access to their keys in python:
 
 ```python
-from cosmpy.aerial.client import LedgerClient, NetworkConfig
-from cosmpy.aerial.wallet import LocalWallet
-from cosmpy.aerial.tx import Transaction
-from cosmpy.aerial.client.utils import prepare_and_broadcast_basic_transaction
-from cosmpy.crypto.keypairs import PrivateKey
-from cosmpy.protos.cosmos.distribution.v1beta1.tx_pb2 import MsgWithdrawValidatorCommission
-from cosmpy.protos.cosmos.authz.v1beta1.tx_pb2 import MsgGrant
-from cosmpy.protos.cosmos.authz.v1beta1.authz_pb2 import GenericAuthorization, Grant
+from cosmosRaw.aerial.client import LedgerClient, NetworkConfig
+from cosmosRaw.aerial.wallet import LocalWallet
+from cosmosRaw.aerial.tx import Transaction
+from cosmosRaw.aerial.client.utils import prepare_and_broadcast_basic_transaction
+from cosmosRaw.crypto.keypairs import PrivateKey
+from cosmosRaw.protos.cosmos.distribution.v1beta1.tx_pb2 import MsgWithdrawValidatorCommission
+from cosmosRaw.protos.cosmos.authz.v1beta1.tx_pb2 import MsgGrant
+from cosmosRaw.protos.cosmos.authz.v1beta1.authz_pb2 import GenericAuthorization, Grant
 
 from google.protobuf import any_pb2, timestamp_pb2
 from datetime import datetime, timedelta

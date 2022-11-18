@@ -21,15 +21,15 @@ from datetime import datetime, timedelta
 
 from google.protobuf import any_pb2, timestamp_pb2
 
-from cosmpy.aerial.client import LedgerClient, NetworkConfig
-from cosmpy.aerial.client.utils import prepare_and_broadcast_basic_transaction
-from cosmpy.aerial.faucet import FaucetApi
-from cosmpy.aerial.tx import Transaction
-from cosmpy.aerial.wallet import LocalWallet
-from cosmpy.protos.cosmos.authz.v1beta1.authz_pb2 import Grant
-from cosmpy.protos.cosmos.authz.v1beta1.tx_pb2 import MsgGrant
-from cosmpy.protos.cosmos.bank.v1beta1.authz_pb2 import SendAuthorization
-from cosmpy.protos.cosmos.base.v1beta1.coin_pb2 import Coin
+from cosmosRaw.aerial.client import LedgerClient, NetworkConfig
+from cosmosRaw.aerial.client.utils import prepare_and_broadcast_basic_transaction
+from cosmosRaw.aerial.faucet import FaucetApi
+from cosmosRaw.aerial.tx import Transaction
+from cosmosRaw.aerial.wallet import LocalWallet
+from cosmosRaw.protos.cosmos.authz.v1beta1.authz_pb2 import Grant
+from cosmosRaw.protos.cosmos.authz.v1beta1.tx_pb2 import MsgGrant
+from cosmosRaw.protos.cosmos.bank.v1beta1.authz_pb2 import SendAuthorization
+from cosmosRaw.protos.cosmos.base.v1beta1.coin_pb2 import Coin
 
 
 def _parse_commandline():

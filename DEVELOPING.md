@@ -1,5 +1,5 @@
 [comment]: <> (  <a href="">)
-[comment]: <> (    <img alt="Codecov" src="https://img.shields.io/codecov/c/github/fetchai/cosmpy">)
+[comment]: <> (    <img alt="Codecov" src="https://img.shields.io/codecov/c/github/fetchai/cosmosRaw">)
 [comment]: <> (  </a>)
 
   <a href="https://img.shields.io/badge/lint-flake8-blueviolet">

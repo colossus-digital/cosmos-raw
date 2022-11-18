@@ -23,7 +23,7 @@ from typing import List, Optional
 
 from google.protobuf.descriptor import Descriptor
 
-from cosmpy.common.rest_client import RestClient
+from cosmosRaw.common.rest_client import RestClient
 
 
 class MockRestClient(RestClient):

@@ -22,9 +22,9 @@
 import json
 import unittest
 
-from cosmpy.common.utils import json_encode
-from cosmpy.crypto.address import Address
-from cosmpy.crypto.keypairs import PublicKey
+from cosmosRaw.common.utils import json_encode
+from cosmosRaw.crypto.address import Address
+from cosmosRaw.crypto.keypairs import PublicKey
 
 
 class AddressTestCase(unittest.TestCase):

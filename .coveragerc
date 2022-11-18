@@ -7,7 +7,7 @@ omit =
     # omit Tox
     .tox/*
     # omit protos
-    cosmpy/protos/*
+    cosmosRaw/protos/*
 
 [html]
   directory = coverage_report

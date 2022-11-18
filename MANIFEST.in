@@ -13,6 +13,6 @@ recursive-include docs *
 recursive-include examples *.py
 recursive-include scripts *.py
 recursive-include scripts *.sh
-recursive-include cosmpy *.py
+recursive-include cosmosRaw *.py
 recursive-include tests *.py
 recursive-include tests *.wasm

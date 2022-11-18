@@ -4,10 +4,10 @@ The code will require the following imports:
 
 ```python
 from time import sleep
-from cosmpy.aerial.client import LedgerClient, NetworkConfig
-from cosmpy.aerial.contract import LedgerContract
-from cosmpy.aerial.faucet import FaucetApi
-from cosmpy.aerial.wallet import LocalWallet
+from cosmosRaw.aerial.client import LedgerClient, NetworkConfig
+from cosmosRaw.aerial.contract import LedgerContract
+from cosmosRaw.aerial.faucet import FaucetApi
+from cosmosRaw.aerial.wallet import LocalWallet
 ```
 
 We will define the *swap_native_for_cw20* function that trades `swap_amount` of atestfet from `wallet` for CW20 tokens by executing a `pair_contract`:
@@ -152,4 +152,4 @@ while True:
 ```
 
 This code assumes other traders performing transactions with the Liquidity Pool that will generate price movements.
-You can check out the full example at [`swap-automation`](https://github.com/fetchai/cosmpy/blob/develop/examples/aerial_swap_automation.py)
+You can check out the full example at [`swap-automation`](https://github.com/fetchai/cosmosRaw/blob/develop/examples/aerial_swap_automation.py)

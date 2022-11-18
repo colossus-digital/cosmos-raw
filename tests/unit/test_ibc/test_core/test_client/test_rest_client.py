@@ -23,9 +23,9 @@ from unittest import TestCase
 from google.protobuf.json_format import ParseDict
 from google.protobuf.wrappers_pb2 import Int32Value  # noqa # needed for protobuf decode
 
-from cosmpy.common.utils import json_encode
-from cosmpy.ibc.core.client.rest_client import IBCCoreClientRestClient  # type: ignore
-from cosmpy.protos.ibc.core.client.v1.query_pb2 import (
+from cosmosRaw.common.utils import json_encode
+from cosmosRaw.ibc.core.client.rest_client import IBCCoreClientRestClient  # type: ignore
+from cosmosRaw.protos.ibc.core.client.v1.query_pb2 import (
     QueryClientParamsRequest,
     QueryClientParamsResponse,
     QueryClientStateRequest,

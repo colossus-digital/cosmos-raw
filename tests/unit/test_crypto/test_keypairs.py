@@ -21,7 +21,7 @@
 
 import unittest
 
-from cosmpy.crypto.keypairs import PrivateKey, PublicKey
+from cosmosRaw.crypto.keypairs import PrivateKey, PublicKey
 
 
 class KeyPairTestCase(unittest.TestCase):

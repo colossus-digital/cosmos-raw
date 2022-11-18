@@ -18,8 +18,8 @@
 # ------------------------------------------------------------------------------
 
 
-from cosmpy.aerial.wallet import LocalWallet
-from cosmpy.common.utils import json_encode
+from cosmosRaw.aerial.wallet import LocalWallet
+from cosmosRaw.common.utils import json_encode
 
 
 def test_wallet_behaves_like_address_string():

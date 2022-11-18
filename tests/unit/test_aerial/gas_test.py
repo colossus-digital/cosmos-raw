@@ -20,14 +20,14 @@ from typing import Any
 
 import pytest
 
-from cosmpy.aerial.gas import (
+from cosmosRaw.aerial.gas import (
     GasStrategy,
     OfflineMessageTableStrategy,
     SimulationGasStrategy,
 )
-from cosmpy.aerial.tx import Transaction
-from cosmpy.protos.cosmos.bank.v1beta1.tx_pb2 import MsgSend
-from cosmpy.protos.cosmwasm.wasm.v1.tx_pb2 import (
+from cosmosRaw.aerial.tx import Transaction
+from cosmosRaw.protos.cosmos.bank.v1beta1.tx_pb2 import MsgSend
+from cosmosRaw.protos.cosmwasm.wasm.v1.tx_pb2 import (
     MsgExecuteContract,
     MsgInstantiateContract,
     MsgStoreCode,

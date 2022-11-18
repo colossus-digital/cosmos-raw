@@ -1,6 +1,6 @@
 **Oracles** are entities that can update state variables in smart contracts and whose goal is usually to accurately estimate or predict some real world quantity or quantities. These quantities can then be used in the logic of other smart contracts.
 
-This guide shows how to write a CosmPy script that deploys and updates an oracle contract with a coin price, and another script that deploys a contract that queries this coin price.
+This guide shows how to write a cosmosRaw script that deploys and updates an oracle contract with a coin price, and another script that deploys a contract that queries this coin price.
 
 ## Preliminaries
 
@@ -11,14 +11,15 @@ wget https://raw.githubusercontent.com/fetchai/agents-aea/develop/packages/fetch
 ```
 
 The scripts also require the following imports:
+
 ```python
 from time import sleep
 import requests
-from cosmpy.aerial.client import LedgerClient, NetworkConfig
-from cosmpy.aerial.contract import LedgerContract
-from cosmpy.aerial.wallet import LocalWallet
-from cosmpy.crypto.address import Address
-from cosmpy.crypto.keypairs import PrivateKey
+from cosmosRaw.aerial.client import LedgerClient, NetworkConfig
+from cosmosRaw.aerial.contract import LedgerContract
+from cosmosRaw.aerial.wallet import LocalWallet
+from cosmosRaw.crypto.address import Address
+from cosmosRaw.crypto.keypairs import PrivateKey
 ```
 
 ## Oracle deployer and updater
@@ -77,7 +78,7 @@ while True:
     sleep(UPDATE_INTERVAL_SECONDS)
 ```
 
-For the complete example script, see [aerial_oracle.py](https://github.com/fetchai/cosmpy/blob/develop/examples/aerial_oracle.py).
+For the complete example script, see [aerial_oracle.py](https://github.com/fetchai/cosmosRaw/blob/develop/examples/aerial_oracle.py).
 
 ## Oracle client
 
@@ -114,4 +115,4 @@ while True:
     sleep(REQUEST_INTERVAL_SECONDS)
 ```
 
-For the complete example script, see [aerial_oracle_client.py](https://github.com/fetchai/cosmpy/blob/develop/examples/aerial_oracle_client.py).
+For the complete example script, see [aerial_oracle_client.py](https://github.com/fetchai/cosmosRaw/blob/develop/examples/aerial_oracle_client.py).

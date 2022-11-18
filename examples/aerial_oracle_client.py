@@ -19,11 +19,11 @@
 import argparse
 from time import sleep
 
-from cosmpy.aerial.client import LedgerClient, NetworkConfig
-from cosmpy.aerial.contract import LedgerContract
-from cosmpy.aerial.faucet import FaucetApi
-from cosmpy.aerial.wallet import LocalWallet
-from cosmpy.crypto.address import Address
+from cosmosRaw.aerial.client import LedgerClient, NetworkConfig
+from cosmosRaw.aerial.contract import LedgerContract
+from cosmosRaw.aerial.faucet import FaucetApi
+from cosmosRaw.aerial.wallet import LocalWallet
+from cosmosRaw.crypto.address import Address
 
 REQUEST_INTERVAL_SECONDS = 10
 

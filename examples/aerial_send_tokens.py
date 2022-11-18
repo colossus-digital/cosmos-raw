@@ -16,9 +16,9 @@
 #   limitations under the License.
 #
 # ------------------------------------------------------------------------------
-from cosmpy.aerial.client import LedgerClient, NetworkConfig
-from cosmpy.aerial.faucet import FaucetApi
-from cosmpy.aerial.wallet import LocalWallet
+from cosmosRaw.aerial.client import LedgerClient, NetworkConfig
+from cosmosRaw.aerial.faucet import FaucetApi
+from cosmosRaw.aerial.wallet import LocalWallet
 
 
 def main():

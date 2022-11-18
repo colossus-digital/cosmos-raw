@@ -1,4 +1,4 @@
-Cosmpy is a Python library for interacting with Cosmos-based blockchains.
+cosmosRaw is a Python library for interacting with Cosmos-based blockchains.
 
 * A simplified command line tool for querying and sending transactions to Cosmos-SDK blockchains. 
 * Features an easy interface for deploying and interacting with Cosmwasm smart contracts.
@@ -7,17 +7,17 @@ Cosmpy is a Python library for interacting with Cosmos-based blockchains.
 ## To install
 
 ``` bash
-pip3 install cosmpy
+pip3 install cosmosRaw
 ```
 
 ## Version
 
-<a href="https://img.shields.io/pypi/v/cosmpy" target="_blank"><img alt="PyPI" src="https://img.shields.io/pypi/v/cosmpy" /></a>.
+<a href="https://img.shields.io/pypi/v/cosmosRaw" target="_blank"><img alt="PyPI" src="https://img.shields.io/pypi/v/cosmosRaw" /></a>.
 
 ## Repository
 
 ```
-https://github.com/fetchai/cosmpy
+https://github.com/fetchai/cosmosRaw
 ```
 
 ## To contribute
@@ -25,7 +25,7 @@ https://github.com/fetchai/cosmpy
 Clone the repo:
 
 ``` bash
-git clone https://github.com/fetchai/cosmpy.git --recursive && cd cosmpy
+git clone https://github.com/fetchai/cosmosRaw.git --recursive && cd cosmosRaw
 ```
 
 Set up development environment:

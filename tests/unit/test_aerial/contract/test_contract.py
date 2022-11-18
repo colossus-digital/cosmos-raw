@@ -1,8 +1,8 @@
 from unittest.mock import Mock
 
-from cosmpy.aerial.contract import LedgerContract
-from cosmpy.aerial.wallet import LocalWallet
-from cosmpy.common.utils import json_encode
+from cosmosRaw.aerial.contract import LedgerContract
+from cosmosRaw.aerial.wallet import LocalWallet
+from cosmosRaw.common.utils import json_encode
 
 # -*- coding: utf-8 -*-
 # ------------------------------------------------------------------------------

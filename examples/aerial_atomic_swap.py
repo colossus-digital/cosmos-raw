@@ -19,12 +19,12 @@
 
 import argparse
 
-from cosmpy.aerial.client import LedgerClient, NetworkConfig
-from cosmpy.aerial.contract import LedgerContract, create_cosmwasm_execute_msg
-from cosmpy.aerial.faucet import FaucetApi
-from cosmpy.aerial.tx import SigningCfg, Transaction
-from cosmpy.aerial.wallet import LocalWallet
-from cosmpy.crypto.address import Address
+from cosmosRaw.aerial.client import LedgerClient, NetworkConfig
+from cosmosRaw.aerial.contract import LedgerContract, create_cosmwasm_execute_msg
+from cosmosRaw.aerial.faucet import FaucetApi
+from cosmosRaw.aerial.tx import SigningCfg, Transaction
+from cosmosRaw.aerial.wallet import LocalWallet
+from cosmosRaw.crypto.address import Address
 
 TOKEN_ID_1 = "680564733841876926926749214863536422912"
 TOKEN_ID_2 = "680564733841876926926749214863536422913"

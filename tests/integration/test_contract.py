@@ -21,11 +21,11 @@ from pathlib import Path
 
 import pytest
 
-from cosmpy.aerial.client import LedgerClient
-from cosmpy.aerial.config import NetworkConfig
-from cosmpy.aerial.contract import LedgerContract
-from cosmpy.aerial.faucet import FaucetApi
-from cosmpy.aerial.wallet import LocalWallet
+from cosmosRaw.aerial.client import LedgerClient
+from cosmosRaw.aerial.config import NetworkConfig
+from cosmosRaw.aerial.contract import LedgerContract
+from cosmosRaw.aerial.faucet import FaucetApi
+from cosmosRaw.aerial.wallet import LocalWallet
 
 CONTRACT_PATH = Path(__file__).parent / "../../contracts/simple.wasm"
 

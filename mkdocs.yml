@@ -1,7 +1,7 @@
-site_name: CosmPy
-site_url: https://docs.fetch.ai/cosmpy
-site_description: Everything you need to know about CosmPy.
-repo_url: https://github.com/fetchai/cosmpy
+site_name: cosmosRaw
+site_url: https://docs.fetch.ai/cosmosRaw
+site_description: Everything you need to know about cosmosRaw.
+repo_url: https://github.com/fetchai/cosmosRaw
 edit_uri: ""
 site_author: developer@fetch.ai
 

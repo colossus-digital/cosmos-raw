@@ -29,13 +29,13 @@ here = pathlib.Path(__file__).parent.resolve()
 long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
-    name="cosmpy",
+    name="cosmos-raw",
     version="0.5.1",
     description="A library for interacting with the cosmos networks",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/fetchai/cosmpy",
-    author="Fetch.AI Limited",
+    url="https://github.com/colossus-digital/cosmos-raw",
+    author="Colossus.digital",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
@@ -49,8 +49,8 @@ setup(
         "Programming Language :: Python :: 3 :: Only",
     ],
     keywords="cosmos, gaia, fetchhub, fetchai",
-    package_dir={"cosmpy": "cosmpy"},
-    packages=find_packages(include=["cosmpy*"]),
+    package_dir={"cosmos-raw": "cosmos-raw"},
+    packages=find_packages(include=["cosmos-raw*"]),
     python_requires=">=3.6, <4",
     install_requires=[
         "ecdsa",
@@ -88,7 +88,7 @@ setup(
         "test": ["coverage", "pytest"],
     },
     project_urls={
-        "Bug Reports": "https://github.com/fetchai/cosmpy/issues",
-        "Source": "https://github.com/fetchai/cosmpy",
+        "Bug Reports": "https://github.com/colossus-digital/cosmos-raw/issues",
+        "Source": "https://github.com/colossus-digital/cosmos-raw",
     },
 )

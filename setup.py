@@ -29,7 +29,7 @@ here = pathlib.Path(__file__).parent.resolve()
 long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
-    name="cosmos-raw",
+    name="cosmosRaw",
     version="0.5.1",
     description="A library for interacting with the cosmos networks",
     long_description=long_description,
@@ -49,8 +49,8 @@ setup(
         "Programming Language :: Python :: 3 :: Only",
     ],
     keywords="cosmos, gaia, fetchhub, fetchai",
-    package_dir={"cosmos-raw": "cosmos-raw"},
-    packages=find_packages(include=["cosmos-raw*"]),
+    package_dir={"cosmosRaw": "cosmosRaw"},
+    packages=find_packages(include=["cosmosRaw*"]),
     python_requires=">=3.6, <4",
     install_requires=[
         "ecdsa",
